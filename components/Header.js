@@ -6,15 +6,11 @@ import { useRouter } from "next/router";
 import { AuthContext } from "../context/AuthContext";
 import ShoppingCart from "./ShoppingCart";
 import { ShoppingCartContext } from "../context/ShoppingCartContext";
+import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 export default function Header() {
-  const {
-    shoppingCart,
-    setShoppingCart,
-    quantity,
-    searchProduct,
-    setSearchProuduct,
-  } = useContext(ShoppingCartContext);
-
+  const { shoppingCart, setShoppingCart, quantity, setSearchProuduct } =
+    useContext(ShoppingCartContext);
+  const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
   const router = useRouter();
   const { currentUser } = useContext(AuthContext);
   const SignOut = () => {
@@ -37,7 +33,7 @@ export default function Header() {
         </div>
         <div className=" flex items-center space-x-5">
           <div
-            onClick={currentUser ? SignOut : () => router.push("/login")}
+            onClick={currentUser ? SignOut : () => signInWithGoogle()}
             className=" text-black cursor-pointer"
           >
             {currentUser ? currentUser.displayName : "登入 / 登出"}
