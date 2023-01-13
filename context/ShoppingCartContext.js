@@ -4,7 +4,6 @@ export const ShoppingCartContext = createContext({});
 
 function stateReducer(state, { type, payload }) {
   const items = state.find((product) => product.title === payload.title);
-
   switch (type) {
     case "increase":
       if (items) {
@@ -45,6 +44,7 @@ function initState() {
   if (typeof window !== "undefined") {
     const storageEvents = localStorage.getItem("state");
     const parsedEvents = storageEvents ? JSON.parse(storageEvents) : [];
+
     return parsedEvents;
   }
 }
@@ -81,6 +81,7 @@ export const ShoppingCartContextProvider = ({ children }) => {
         console.log("can't find data");
       });
   }, []);
+
   return (
     <ShoppingCartContext.Provider
       value={{

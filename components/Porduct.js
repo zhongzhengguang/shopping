@@ -29,7 +29,7 @@ export default function Porduct({
       <p className=" absolute top-2 right-2 text-xs italic text-gray-400">
         {category}
       </p>
-      <div className=" flex h-[300px] w-full bg-black">
+      <div className=" flex h-[300px] w-full ">
         <img src={image} className="w-full h-full" />
       </div>
       <h4>{title}</h4>

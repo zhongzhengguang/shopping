@@ -27,7 +27,7 @@ export default function checkout() {
               title: currentProuduct.map((item) => item.title),
               price: currentProuduct.map((item) => item.price),
               quantity: currentProuduct.map((item) => item.quantity),
-              total: total,
+              total: total.toFixed(2),
             },
           ],
         });

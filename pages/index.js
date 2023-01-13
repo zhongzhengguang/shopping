@@ -1,13 +1,9 @@
 import axios from "axios";
 import Head from "next/head";
-import { useContext, useEffect, useState } from "react";
 import Banner from "../components/Banner";
 import Header from "../components/Header";
 import ProductFeed from "../components/ProductFeed";
-import { ShoppingCartContext } from "../context/ShoppingCartContext";
-export default function Home() {
-  const { products } = useContext(ShoppingCartContext);
-
+export default function Home({ products }) {
   return (
     <>
       <Head>
@@ -17,10 +13,23 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
+
       <div className=" flex flex-col space-y-10 absolute top-[6vh]">
         <Banner />
         <ProductFeed products={products} />
       </div>
     </>
   );
+}
+
+export async function getServerSideProps(context) {
+  const products = await fetch("https://fakestoreapi.com/products").then(
+    (res) => res.json()
+  );
+
+  return {
+    props: {
+      products,
+    },
+  };
 }
