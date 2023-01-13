@@ -11,7 +11,6 @@ export default function Header() {
   const { shoppingCart, setShoppingCart, quantity, setSearchProuduct } =
     useContext(ShoppingCartContext);
   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth);
-  const router = useRouter();
   const { currentUser } = useContext(AuthContext);
   const SignOut = () => {
     auth.signOut();
