@@ -12,6 +12,7 @@ import {
 function App({ Component, pageProps }) {
   const [user] = useAuthState(auth);
   const { currentProuduct } = useContext(ShoppingCartContext);
+
   useEffect(() => {
     const createUser = async () => {
       if (user) {
